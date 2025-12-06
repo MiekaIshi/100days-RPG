@@ -2,6 +2,8 @@ import java.awt.Point;
 import java.util.Random;
 
 public class WorldMap {
+    Boss boss = new Boss();
+
     private static final WorldMap worldmap = new WorldMap();
     Random rand = new Random();
     Point player = new Point(0, 0);
@@ -71,6 +73,7 @@ public class WorldMap {
         switch (itemName) {
             case "boss":
                 System.out.println("ボスと遭遇した！");
+                boss.start();
                 break;
 
             case "globe":
