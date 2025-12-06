@@ -7,8 +7,7 @@ public class Player {
     // 勇者の現在位置を保持
     Point playerLocation = new Point(2, 2);
 
-    // 移動処理に使う
-    int direction = 100;
+    int attack = 10;
 
     public String showLocation() { // 4. 戻り値の型をStringに変更
         return "y: " + playerLocation.y + ", x : " + playerLocation.x;
@@ -57,8 +56,16 @@ public class Player {
         }
 
         System.out.println("移動先は："+ showLocation());
-        wm.getArea(playerLocation);
+        wm.cheakArea(playerLocation);
 
+    }
+
+    public void setAttack(){
+
+    }
+
+    public int getAttack(){
+        return this.attack;
     }
 
 }

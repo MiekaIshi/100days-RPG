@@ -22,10 +22,6 @@ public class MapData {
         this.boss = true;
     }
 
-    public boolean getBoss() {
-        return this.boss;
-    }
-
     public void setGlobe() {
         this.globe = true;
     }
@@ -34,14 +30,14 @@ public class MapData {
         return this.globe;
     }
 
-    public void areaCheak() {
+    public String areaCheak() {
         if(globe == true){
-            System.out.println("鋼のグローブを手に入れた！");
             globe = false;
+            return "globe";
         }else if(boss == true){
-             System.out.println("ボスと遭遇した！");
+             return "boss";
         }else{
-            System.out.println("ここには何もない");
+            return "nothing";
         }
       
            

@@ -35,6 +35,11 @@ public class WorldMap {
         return worldmap;
     }
 
+    //フィールド変数の操作
+    public void setAttack(int num){
+    }
+
+
     public void printMap() {
         for (int y = 0; y < 12; y++) {
             for (int x = 0; x < 12; x++) {
@@ -60,8 +65,23 @@ public class WorldMap {
         mapdata[itemY][itemX].setGlobe();
     }
 
-    public void getArea(Point player){
-        mapdata[player.y][player.x].areaCheak();
+    public void cheakArea(Point player){
+        String itemName = mapdata[player.y][player.x].areaCheak();
+
+        switch (itemName) {
+            case "boss":
+                System.out.println("ボスと遭遇した！");
+                break;
+
+            case "globe":
+                System.out.println("はがねのグローブを手に入れた");
+                setAttack(100);
+                break;
+     
+            default:
+                System.out.println("ここにはなにもない");
+                break;
+        }
     }
     
 }
