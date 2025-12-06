@@ -1,10 +1,15 @@
+import java.awt.Point;
 import java.util.Random;
 
 public class WorldMap {
+    private static final WorldMap worldmap = new WorldMap();
     Random rand = new Random();
+    Point player = new Point(0, 0);
+
     MapData[][] mapdata = new MapData[12][12];
 
-    public WorldMap() {
+
+    private WorldMap() {
         // クラス型の二次元配列を初期化
         for (int y = 0; y < 12; y++) {
             for (int x = 0; x < 12; x++) {
@@ -12,16 +17,22 @@ public class WorldMap {
             }
         }
 
+        // マップの左右に壁（1）を設定
         for (int y = 0; y < 12; y++) {
             mapdata[y][0].setTil(1);
             mapdata[y][11].setTil(1);
         }
 
+        // マップの上下に壁（１）を設定
         for (int x = 0; x < 12; x++) {
             mapdata[0][x].setTil(1);
             mapdata[11][x].setTil(1);
         }
 
+    }
+
+    public static WorldMap getInstance() {
+        return worldmap;
     }
 
     public void printMap() {
@@ -35,13 +46,22 @@ public class WorldMap {
     }
 
     // ボスのいるエリアを定義
-    public void makeBoss() {
-        mapdata[10][(int) (Math.random() * 10) + 1].setBoss(true);
+    public void setBoss() {
+        int itemX = rand.nextInt(10) + 1;
+
+        mapdata[10][itemX].setBoss();
     }
 
     // これがないとボスに勝てない武器を配置
-    public void mastGlobe(){
-        mapdata[(int) (Math.random() * 9) + 4][(int) (Math.random() * 9) + 4].setBoss(true);
-    })
+    public void setGlobe(){
+        int itemY = rand.nextInt(9) + 1;
+        int itemX = rand.nextInt(10) + 1;
+        
+        mapdata[itemY][itemX].setGlobe();
+    }
 
+    public void getArea(Point player){
+        mapdata[player.y][player.x].areaCheak();
+    }
+    
 }
