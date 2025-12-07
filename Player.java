@@ -1,13 +1,15 @@
 import java.awt.Point;
 
-
 public class Player {
+    // ラスボスを生み出す
+    Boss lastBoss = new Boss();
     // WorldMapのインスタンスを生成する
     WorldMap wm = WorldMap.getInstance();
     // 勇者の現在位置を保持
     Point playerLocation = new Point(2, 2);
 
-    int attack = 10;
+    private int attack = 10;
+    private int hp = 100;
 
     public String showLocation() { // 4. 戻り値の型をStringに変更
         return "y: " + playerLocation.y + ", x : " + playerLocation.x;
@@ -50,22 +52,44 @@ public class Player {
         if (nextX <= 0 || nextX >= 11 || nextY <= 1 || nextY >= 11) {
             System.out.println("マップの端です。移動できません。");
             return;
-        }else{
+        } else {
             playerLocation.y = nextY;
             playerLocation.x = nextX;
         }
 
-        System.out.println("移動先は："+ showLocation());
-        wm.cheakArea(playerLocation);
+        System.out.println("移動先は：" + showLocation());
+        String battleCheak = wm.cheakArea(playerLocation);
+
+        if (battleCheak == "boss") {
+            bossBattle();
+        }
 
     }
 
-    public void setAttack(){
-
+    public void battleMode(String name) {
+        if (name == "boss") {
+            bossBattle();
+        }
     }
 
-    public int getAttack(){
-        return this.attack;
+    public void bossBattle() {
+        int bossHP = lastBoss.getHP();
+
+        while (bossHP >= 0 || this.hp >= 0) {
+            this.hp -= lastBoss.attack();
+            if (this.hp <= 0) {
+                System.out.println("勇者は倒されたゲームオーバーです");
+                System.exit(0);
+            }
+            System.out.println("勇者の攻撃");
+            bossHP -= this.attack;
+            if (bossHP <= 0) {
+                System.out.println("ボスを倒した");
+                System.exit(0);
+            }
+            System.out.println("勇者のHP:" + this.hp + "ボスのHP;" + bossHP);
+        }
+
     }
 
 }

@@ -10,7 +10,6 @@ public class WorldMap {
 
     MapData[][] mapdata = new MapData[12][12];
 
-
     private WorldMap() {
         // クラス型の二次元配列を初期化
         for (int y = 0; y < 12; y++) {
@@ -37,10 +36,9 @@ public class WorldMap {
         return worldmap;
     }
 
-    //フィールド変数の操作
-    public void setAttack(int num){
+    // フィールド変数の操作
+    public void setAttack(int num) {
     }
-
 
     public void printMap() {
         for (int y = 0; y < 12; y++) {
@@ -60,31 +58,29 @@ public class WorldMap {
     }
 
     // これがないとボスに勝てない武器を配置
-    public void setGlobe(){
+    public void setGlobe() {
         int itemY = rand.nextInt(9) + 1;
         int itemX = rand.nextInt(10) + 1;
-        
+
         mapdata[itemY][itemX].setGlobe();
     }
 
-    public void cheakArea(Point player){
+    public String cheakArea(Point player){
         String itemName = mapdata[player.y][player.x].areaCheak();
 
         switch (itemName) {
             case "boss":
                 System.out.println("ボスと遭遇した！");
-                boss.start();
-                break;
+                return "boss";
 
             case "globe":
                 System.out.println("はがねのグローブを手に入れた");
-                setAttack(100);
-                break;
-     
+                return "blobe";
+
             default:
                 System.out.println("ここにはなにもない");
-                break;
+                return "nothing";
         }
     }
-    
+
 }
