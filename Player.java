@@ -6,13 +6,22 @@ public class Player {
     // WorldMapのインスタンスを生成する
     WorldMap wm = WorldMap.getInstance();
     // 勇者の現在位置を保持
-    Point playerLocation = new Point(2, 2);
+    Point playerLocation = new Point(1, 1);
 
     private int attack = 10;
     private int hp = 100;
 
     public String showLocation() { // 4. 戻り値の型をStringに変更
         return "y: " + playerLocation.y + ", x : " + playerLocation.x;
+    }
+
+    public Point getlocation(){
+        return playerLocation;
+    }
+
+    public void setLocation(Point location){
+        this.playerLocation = location;
+
     }
 
     public void movePlayer(char ml) {
