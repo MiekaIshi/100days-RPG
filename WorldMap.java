@@ -37,6 +37,8 @@ public class WorldMap {
     }
 
     // フィールド変数の操作
+ 
+    
     public void setAttack(int num) {
     }
 
@@ -49,6 +51,10 @@ public class WorldMap {
             System.out.println();
         }
     }
+    
+    public  int getTilDate(int y,int x){
+      return mapdata[y][x].getTil();
+  }
 
     // ボスのいるエリアを定義
     public void setBoss() {
@@ -65,9 +71,10 @@ public class WorldMap {
         mapdata[itemY][itemX].setGlobe();
     }
 
-    public String cheakArea(Point player){
-        String itemName = mapdata[player.y][player.x].areaCheak();
+    public String cheakArea(Point pl){
+        String itemName = mapdata[pl.y][pl.x].areaCheak();
 
+        
         switch (itemName) {
             case "boss":
                 System.out.println("ボスと遭遇した！");

@@ -41,4 +41,4 @@ BattleManager.javaクラスを新規作成し、Player.bossBattle()内のロジ�
 ### 感想など
 * static がよくわかっていない？
 * VSCodeの設定を同期しろと言われて、GitHubでrグインしたら、いろいろとおかしくなった。
-* インテリJを使ってみた。
+

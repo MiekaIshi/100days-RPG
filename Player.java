@@ -11,20 +11,20 @@ public class Player {
     private int attack = 10;
     private int hp = 100;
 
-    public String showLocation() { // 4. 戻り値の型をStringに変更
+    public String showLocation() { 
         return "y: " + playerLocation.y + ", x : " + playerLocation.x;
     }
 
-    public Point getlocation(){
+    public Point getLocation(){
         return playerLocation;
     }
 
-    public void setLocation(Point location){
-        this.playerLocation = location;
-
+    public void setLocation(int x, int y){
+        this.playerLocation.x = x;
+        this.playerLocation.y = y;
     }
 
-    public void movePlayer(char ml) {
+    public void MovePlayer(char ml) {
         System.out.println("現在位置 :" + playerLocation.y + "," + playerLocation.x);
 
         int currentX = playerLocation.x;

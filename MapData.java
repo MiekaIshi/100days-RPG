@@ -31,10 +31,10 @@ public class MapData {
     }
 
     public String areaCheak() {
-        if(globe == true){
-            globe = false;
+        if(this.globe == true){
+            this.globe = false;
             return "globe";
-        }else if(boss == true){
+        }else if(this.boss == true){
              return "boss";
         }else{
             return "nothing";
