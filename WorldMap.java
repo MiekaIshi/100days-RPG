@@ -1,4 +1,8 @@
 import java.awt.Point;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 public class WorldMap {
@@ -17,28 +21,50 @@ public class WorldMap {
         mapdata[y][x] = new MapData();
       }
     }
-
-    // マップの左右に壁（1）を設定
-    for (int y = 0; y < 12; y++) {
-      mapdata[y][0].setTil(1);
-      mapdata[y][11].setTil(1);
-    }
-
-    // マップの上下に壁（１）を設定
-    for (int x = 0; x < 12; x++) {
-      mapdata[0][x].setTil(1);
-      mapdata[11][x].setTil(1);
-    }
+    
+    loadMapFromFile("map-data.csv");
     
     setBoss();
     setGlobe();
     
   }
-
+  
   public static WorldMap getInstance() {
     return worldmap;
   }
-    
+  
+  private void loadMapFromFile(String fileName) {
+    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+      String line;
+      int y = 0;
+      
+      while ((line = br.readLine()) != null) {
+        // カンマで区切って配列にする
+        String[] values = line.split(",");
+        
+        for (int x = 0; x < values.length && x < 12; x++) {
+          try {
+            // 文字列を整数に変換
+            int tileType = Integer.parseInt(values[x].trim());
+            mapdata[y][x].setTil(tileType);
+          } catch (NumberFormatException e) {
+            System.err.println("エラー: マップデータファイルに数値以外のデータが含まれています。(" + y + "," + x + ")");
+          }
+        }
+        y++;
+        if (y >= 12) break; // 12行読み込んだら終了
+      }
+      System.out.println("マップデータ `" + fileName + "` の読み込みが完了しました。");
+      
+    } catch (IOException e) {
+      System.err.println("エラー: マップデータファイル `" + fileName + "` を読み込めませんでした。");
+      // ファイルが見つからない、または読み込めない場合の代替処理
+      // 例: デフォルトのマップ（すべて平地など）を生成するロジックをここに書く
+      e.printStackTrace();
+    }
+  }
+  
+  //ここまで
   public void getAttack(int num) {
   }
 
@@ -57,7 +83,7 @@ public class WorldMap {
 
 // ボスのいるエリアを定義
 public void setBoss() {
-  int itemX = rand.nextInt(10) + 1;
+  int itemX = rand.nextInt(10) + 8;
 
   mapdata[10][itemX].setBoss();
   System.out.println("ボスを配置");
@@ -65,10 +91,10 @@ public void setBoss() {
 
 // これがないとボスに勝てない武器を配置
 public void setGlobe() {
-  int itemY = rand.nextInt(9) + 1;
-  int itemX = rand.nextInt(10) + 1;
+  //int itemY = rand.nextInt(9) + 1;
+  //int itemX = rand.nextInt(10) + 1;
 
-  mapdata[itemY][itemX].setGlobe();
+  mapdata[3][1].setGlobe();
 }
 
     public String cheakArea(Player player){
