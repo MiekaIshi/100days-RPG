@@ -1,16 +1,21 @@
 import java.awt.Point;
 
 public class Player {
-    // ラスボスを生み出す
-    Boss lastBoss = new Boss();
-    // WorldMapのインスタンスを生成する
-    WorldMap wm = WorldMap.getInstance();
-    // 勇者の現在位置を保持
-    Point playerLocation = new Point(1, 1);
+  // ラスボスを生み出す
+  Boss lastBoss = new Boss();
+  // WorldMapのインスタンスを生成する
+  WorldMap wm = WorldMap.getInstance();
+  // 勇者の現在位置を保持
+  Point playerLocation = new Point(1, 1);
+  
+  private int attack = 10;
+  private int hp = 100;
 
-    private int attack = 10;
-    private int hp = 100;
-
+    //フィールド値の操作
+    public  void setAttack(int num){
+      this.attack += num;
+    }
+    
     public String showLocation() { 
         return "y: " + playerLocation.y + ", x : " + playerLocation.x;
     }
@@ -23,7 +28,10 @@ public class Player {
         this.playerLocation.x = x;
         this.playerLocation.y = y;
     }
+    
+    //フィールド値操作ここまで
 
+  /*
     public void MovePlayer(char ml) {
         System.out.println("現在位置 :" + playerLocation.y + "," + playerLocation.x);
 
@@ -66,8 +74,8 @@ public class Player {
             playerLocation.x = nextX;
         }
 
-        System.out.println("移動先は：" + showLocation());
-        String battleCheak = wm.cheakArea(playerLocation);
+       // System.out.println("移動先は：" + showLocation());
+//  //      String battleCheak = wm.cheakArea(playerLocation);
 
         if (battleCheak == "boss") {
             bossBattle();
@@ -100,5 +108,5 @@ public class Player {
         }
 
     }
-
+*/
 }

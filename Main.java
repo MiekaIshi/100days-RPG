@@ -4,10 +4,9 @@ import java.awt.*;
 public class Main {
 
   public static void main(String args[]) {
-
     Player hero = new Player();
     WorldMap wm = WorldMap.getInstance();
- 
+    String item = "null";
     Scanner sc = new Scanner(System.in);
     String loop = "null";
     
@@ -15,8 +14,7 @@ public class Main {
       wm.printMap();
       System.out.println("現在位置: " + hero.showLocation());
       playerMove(hero, wm, sc);
-      wm.cheakArea(hero.getLocation());
-      
+      item = wm.cheakArea(hero);
       
       System.out.println("ゲームを続けますか？　y/n");
       try {
@@ -33,13 +31,13 @@ public class Main {
         sc.close();
         System.exit(0);
       }
-      
     }
-    
   }
   
-  public  static  void setting(){
-  
+  public static void setting(WorldMap wm){
+    //boolean set = true
+    wm.setBoss();
+    wm.setGlobe();
   }
 
   public static void playerMove(Player hero, WorldMap wm, Scanner scanner) {
