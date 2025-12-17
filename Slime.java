@@ -1,12 +1,12 @@
+import com.sun.source.tree.BreakTree;
+
 public class Slime extends Enemy{
   public  Slime(){
-    Supper.setHP(20);
-    Supper.setAttack(5);
-    Supper.setDefance(10);
+    this.hp      = 20;
+    this.attack  = 5;
+    this.defense = 10;
   }
   
-  public int getSlimeHP(){
-    return Supper.HP;
-  }
+  public int getSlimeHP(){return this.hp;}
   
 }

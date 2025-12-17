@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.Random;
 
 public class WorldMap {
-  Boss boss = new Boss();
-
   private static final WorldMap worldmap = new WorldMap();
   Random rand = new Random();
   Point player = new Point(0, 0);
@@ -15,22 +13,21 @@ public class WorldMap {
   MapData[][] mapdata = new MapData[12][12];
 
   private WorldMap() {
-    // クラス型の二次元配列を初期化
+    
+    settingMapData();
+    loadMapFromFile("map-data.csv");
+    
+    setEnemy();
+    setItem();
+  }
+  
+  // クラス型の二次元配列を初期化
+  private void settingMapData(){
     for (int y = 0; y < 12; y++) {
       for (int x = 0; x < 12; x++) {
         mapdata[y][x] = new MapData();
       }
     }
-    
-    loadMapFromFile("map-data.csv");
-    
-    setBoss();
-    setGlobe();
-    
-  }
-  
-  public static WorldMap getInstance() {
-    return worldmap;
   }
   
   private void loadMapFromFile(String fileName) {
@@ -64,10 +61,26 @@ public class WorldMap {
     }
   }
   
-  //ここまで
-  public void getAttack(int num) {
+  private void setEnemy(){
+    //ボスを生み出す
+    int itemX = rand.nextInt(10) + 8;
+    
+    mapdata[10][itemX].setBoss();
+    System.out.println("ボスを配置");
   }
-
+  
+  // これがないとボスに勝てない武器を配置
+  private void setItem() {
+    //int itemY = rand.nextInt(9) + 1;
+    //int itemX = rand.nextInt(10) + 1;
+    mapdata[3][1].setGlobe();
+  }
+  
+  public static WorldMap getInstance() {
+    return worldmap;
+  }
+  //初期設定ここまで
+  
   public void printMap() {
     for (int y = 0; y < 12; y++) {
       for (int x = 0; x < 12; x++) {
@@ -81,43 +94,50 @@ public class WorldMap {
   return mapdata[y][x].getTil();
 }
 
-// ボスのいるエリアを定義
-public void setBoss() {
-  int itemX = rand.nextInt(10) + 8;
-
-  mapdata[10][itemX].setBoss();
-  System.out.println("ボスを配置");
-}
-
-// これがないとボスに勝てない武器を配置
-public void setGlobe() {
-  //int itemY = rand.nextInt(9) + 1;
-  //int itemX = rand.nextInt(10) + 1;
-
-  mapdata[3][1].setGlobe();
-}
-
-    public String cheakArea(Player player){
-    Point pl = player.getLocation();
-      String itemName = "null";
-      
-      itemName = mapdata[pl.y][pl.x].areaCheak();
-
+  public void cheakArea(Player player){
+    Point pLocation = player.getLocation();
+    
+    int til = 999;
+    int encounter = 0;
+    
+    String itemName = mapdata[pLocation.y][pLocation.x].areaCheak();
+    
+    switch (itemName) {
+      case "boss":
+        System.out.println("ボスと遭遇した！");
+        BattleManeger battle = new BattleManeger(player, itemName);
+        return;
         
-        switch (itemName) {
-            case "boss":
-                System.out.println("ボスと遭遇した！");
-                return "boss";
+        case "globe":
+          System.out.println("はがねのグローブを手に入れた");
+          player.setplusAttack(100);
+          break;
 
-            case "globe":
-                System.out.println("はがねのグローブを手に入れた");
-                player.setAttack(100);
-                return "globe";
-
-            default:
-                System.out.println("ここにはなにもない");
-                return "nothing";
-        }
+          default:
+            System.out.println("ここにはなにもない");
+            break;
     }
+    
+    
+    //エンカウント
+    til = getTilDate(pLocation.y, pLocation.x);
+    encounter = rand.nextInt(100) + 1;
+    
+    switch (til){
+      case 2:
+        if(encounter <= 40){
+          System.out.println("スライムが現れた");
+        //  BattleManeger battle = new BattleManeger(player,"slim");
+        }
+        break;
+        
+      case 3:
+        if(encounter <= 20){
+          System.out.println("スライムが現れた");
+        //  BattleManeger battle = new BattleManeger(player, "slime");
+        }
+      break;
+    }
+  }
 
 }

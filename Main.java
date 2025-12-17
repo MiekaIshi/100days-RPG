@@ -14,31 +14,11 @@ public class Main {
       wm.printMap();
       System.out.println("現在位置: " + hero.showLocation());
       playerMove(hero, wm, sc);
-      item = wm.cheakArea(hero);
+      wm.cheakArea(hero);
       
-      System.out.println("ゲームを続けますか？　y/n");
-      try {
-        loop = sc.nextLine().toLowerCase();
-      } catch (Exception e) {
-        System.out.println("入力を受け付けられませんでした。ゲームを終了します。");
-        break;
-      }
-      
-      if ("y".equals(loop)) {
-        continue; // ループの先頭に戻る
-      } else {
-        System.out.println("ゲームを終了します。");
-        sc.close();
-        System.exit(0);
-      }
     }
   }
-  
-  public static void setting(WorldMap wm){
-    //boolean set = true
-    wm.setBoss();
-    wm.setGlobe();
-  }
+ 
 
   public static void playerMove(Player hero, WorldMap wm, Scanner scanner) {
 
@@ -100,10 +80,6 @@ public class Main {
           // プレイヤーの位置を更新
           hero.setLocation(nextX, nextY);
           
-          // 新しい位置のタイルをプレイヤー(3)に設定
-          //wm.getMapTile(nextY, nextX).setTil(3);
-          
-          // TODO: アイテム/ボス遭遇チェックロジックをここに追加
         }
         
       }
