@@ -1,14 +1,10 @@
 import javax.swing.*;
-import java.util.EnumMap;
+
 
 public class BattleManeger {
-  
-   String name;
-   Player pl;
-  public BattleManeger(Player player, String en) {
-    this.name = en;
+  public BattpleManeger(Player player, String name) {
     this.pl = player;
-    System.out.println(this.name);
+    System.out.println(name);
    
     //Slime slime = new Slime();
     

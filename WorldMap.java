@@ -127,16 +127,19 @@ public class WorldMap {
       case 2:
         if(encounter <= 40){
           System.out.println("スライムが現れた");
-        //  BattleManeger battle = new BattleManeger(player,"slim");
+          BattleManeger battle = new BattleManeger(player,"slim");
         }
         break;
         
       case 3:
         if(encounter <= 20){
           System.out.println("スライムが現れた");
-        //  BattleManeger battle = new BattleManeger(player, "slime");
+          BattleManeger battle = new BattleManeger(player, "slime");
         }
       break;
+      case 4:
+        player.fullHp();
+        break;
     }
   }
 
