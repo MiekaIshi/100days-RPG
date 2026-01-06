@@ -9,4 +9,9 @@ public class Slime extends Enemy{
   
   public int getSlimeHP(){return this.hp;}
   
+  @Override
+  public String drop(){return "スライムの粘液";}
+  
 }
+
+

@@ -23,5 +23,7 @@ public class Enemy {
   public int getDefense(){
     return this.defense;
   }
-  
+  public String drop(){return "なし";}
+ 
+ 
 }

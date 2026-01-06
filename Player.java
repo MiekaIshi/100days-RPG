@@ -11,6 +11,7 @@ public class Player {
   private int maxHp  = 100;
   private int hp     = 100;
   private int defancd = 10;
+  private Map<String, Integer> itemBox = new HashMap<>();
   
   public Player(){
     itemList();
@@ -42,6 +43,10 @@ public class Player {
   public void setAttack    (int num) {this.attack = num;}
   public void setplusAttack(int x){this.attack += x;}
   
-  
+  public void addItem(String itemName) {
+    // すでに持っていれば個数を+1、なければ1個として登録
+    itemBox.put(itemName, itemBox.getOrDefault(itemName, 0) + 1);
+    System.out.println(itemName + " を手に入れた！（現在: " + itemBox.get(itemName) + "個）");
+  }
   //フィールド値操作ここまで
 }
