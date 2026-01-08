@@ -63,9 +63,9 @@ public class WorldMap {
   
   private void setEnemy(){
     //ボスを生み出す
-    int itemX = rand.nextInt(10) + 8;
+   // int itemX = rand.nextInt(10) + 8;
     
-    mapdata[10][itemX].setBoss();
+    mapdata[10][10].setBoss();
     System.out.println("ボスを配置");
   }
   
@@ -94,7 +94,7 @@ public class WorldMap {
   return mapdata[y][x].getTil();
 }
 
-  public void cheakArea(Player player){
+  public void cheakArea(Player player) {
     Point pLocation = player.getLocation();
     
     int til = 999;
@@ -107,40 +107,45 @@ public class WorldMap {
         System.out.println("ボスと遭遇した！");
         BattleManeger battle = new BattleManeger(player, itemName);
         return;
-        
-        case "globe":
-          System.out.println("はがねのグローブを手に入れた");
-          player.setplusAttack(100);
-          break;
-
-          default:
-            System.out.println("ここにはなにもない");
-            break;
+      
+      case "globe":
+        System.out.println("はがねのグローブを手に入れた");
+        player.setplusAttack(100);
+        player.addItem("globe");
+        break;
     }
     
-    
-    //エンカウント
     til = getTilDate(pLocation.y, pLocation.x);
     encounter = rand.nextInt(100) + 1;
     
-    switch (til){
+    switch (til) {
       case 2:
-        if(encounter <= 40){
+        if (encounter <= 40) {
           System.out.println("スライムが現れた");
-          BattleManeger battle = new BattleManeger(player,"slim");
+          BattleManeger battle = new BattleManeger(player, "slim");
         }
         break;
-        
+      
       case 3:
-        if(encounter <= 20){
+        if (encounter <= 20) {
           System.out.println("スライムが現れた");
           BattleManeger battle = new BattleManeger(player, "slime");
         }
-      break;
+        break;
       case 4:
         player.fullHp();
         break;
+      
+      default:
+        String name = mapdata[pLocation.y][pLocation.x].getDropItem();
+        if (name.equals("なし")) {
+          System.out.println("ここにはなにもない");
+        } else {
+          player.addItem(name);
+          System.out.println(name + "を手に入れた");
+        }
     }
+    
+    
   }
-
 }

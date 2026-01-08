@@ -6,8 +6,9 @@ public class Main {
   public static void main(String args[]) {
     Player hero = new Player();
     WorldMap wm = WorldMap.getInstance();
-    String item = "null";
-    Scanner sc = new Scanner(System.in);
+   //ds
+    // String item = "null";
+
     String loop = "null";
     
     while (true) {
@@ -15,12 +16,13 @@ public class Main {
       System.out.println("現在位置: " + hero.showLocation());
       wm.cheakArea(hero);
       
-      playerMove(hero,wm,sc);
+      playerMove(hero,wm);
     }
   }
   
   
-  public static void playerMove(Player hero, WorldMap wm, Scanner scanner) {
+  public static void playerMove(Player hero, WorldMap wm) {
+    Scanner scanner = new Scanner(System.in);
     Point currentLocation = hero.getLocation(); // Playerクラスに getLocation() があると仮定
     int nextX = currentLocation.x;
     int nextY = currentLocation.y;

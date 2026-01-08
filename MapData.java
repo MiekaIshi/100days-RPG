@@ -1,8 +1,10 @@
+import java.util.Random;
 public class MapData {
 
   private int til;
   private boolean boss = false;
   private boolean globe = false;
+  private String dropItem = "なし";
   // private String item;
 
   public MapData() {
@@ -13,6 +15,24 @@ public class MapData {
   //初期設定
   public void setTil(int mapTil) {
     this.til = mapTil;
+    
+    switch (this.til){
+      case 0:
+        this.dropItem = "小石";
+        break;
+        
+      case 2:
+        this.dropItem = "木の枝";
+        break;
+        
+      case 3:
+        this.dropItem = "草";
+        break;
+        
+      case 5:
+        this.dropItem = "粘土";
+        break;
+    }
   }
   
   public void setGlobe() {
@@ -36,6 +56,18 @@ public class MapData {
       return "boss";
     } else {
       return "nothing";
+    }
+    
+  }
+  
+  public String getDropItem(){
+    Random rand = new Random();
+    int drop = rand.nextInt(10) + 1;
+    
+    if(drop <= 4){
+      return dropItem;
+    }else {
+      return "なし";
     }
     
   }
