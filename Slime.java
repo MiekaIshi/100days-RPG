@@ -5,6 +5,7 @@ public class Slime extends Enemy{
     this.hp      = 20;
     this.attack  = 5;
     this.defense = 10;
+    this.getExp = 10;
   }
   
   public int getSlimeHP(){return this.hp;}

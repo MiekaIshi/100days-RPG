@@ -5,8 +5,14 @@ public class Player {
 
   // WorldMapのインスタンスを生成する
   WorldMap wm = WorldMap.getInstance();
+  
+ 
   // 勇者の現在位置を保持
   private Point playerLocation = new Point(1, 1);
+  
+  //勇者の状態
+  private int level = 1;
+  private int exp   = 0;
   private int attack = 10;
   private int maxHp  = 100;
   private int hp     = 100;
@@ -32,9 +38,6 @@ public class Player {
         this.playerLocation.x = x;
         this.playerLocation.y = y;
     }
-    public void fullHp(){
-      this.hp = maxHp;
-    }
     
     public int getHP(){ return this.hp;}
     public void setHP(int num){this.hp = num;}
@@ -48,5 +51,24 @@ public class Player {
     itemBox.put(itemName, itemBox.getOrDefault(itemName, 0) + 1);
     System.out.println(itemName + " を手に入れた！（現在: " + itemBox.get(itemName) + "個）");
   }
-  //フィールド値操作ここまで
+  
+  //戦闘関連の処理ここから
+ // public void setHP(int num){this.hp = num;}
+  public void setExp(int num){this.exp += num;}
+  public int getExp(){return this.exp;}
+  public void levelUp() {
+    level++;
+    exp -= 50;
+    
+    maxHp += 10;
+    attack += 10;
+    defancd += 5;
+    
+    fullHP();
+  }
+  
+  public void fullHP(){this.hp = maxHp;}
+  //戦闘関連処理ここまで
+
+  
 }

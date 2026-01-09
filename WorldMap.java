@@ -133,7 +133,7 @@ public class WorldMap {
         }
         break;
       case 4:
-        player.fullHp();
+        player.fullHP();
         break;
       
       default:
