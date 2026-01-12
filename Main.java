@@ -10,7 +10,7 @@ public class Main {
     String loop = "null";
     
     while (true) {
-      wm.printMap();
+     // wm.printMap();
       System.out.println("現在位置: " + hero.showLocation());
       wm.cheakArea(hero);
       

@@ -70,12 +70,13 @@ Thread.sleep を使って、バトルのテンポを調整する。
 * 親クラス
 * メソッドの上書きには @Override を使う
 * 採取スポットではなく、マップを歩くたびにアイテムを採取できるようにした。
-* Scanner.nextInt() の開業問題を回避するために次のように書く。
+* Scanner.nextInt() の開業問題を回避するためにCraftManagerでは数字入力だけを行うようにした。
+* １００日チャレンジが落ち着いたら。対策を考えたい
+* recipes.csvのヘッダーを読み込まないために、whileの前に次の一文を入れる。こうしないと「エラーメッセージ For input string: "id"」となる。
 ```
-Stringinput = scanner.nextLine();
- menu = Integer.parseInt(input);
+String header = br.readLine();
 ```
-* For input string: "id"
+
 
  
 
