@@ -20,12 +20,7 @@ public class Player {
   private Map<String, Integer> itemBox = new HashMap<>();
   
   public Player(){
-    itemList();
-  }
-  
-  private void itemList(){
-    Map<String, Integer> map = new HashMap<>();
-    map.put("回復の実", 1);
+    this.itemBox.put("回復の実", 1);
   }
     //フィールド値の操作
     
@@ -48,10 +43,25 @@ public class Player {
   
   public void addItem(String itemName) {
     // すでに持っていれば個数を+1、なければ1個として登録
-    itemBox.put(itemName, itemBox.getOrDefault(itemName, 0) + 1);
+    this.itemBox.put(itemName, this.itemBox.getOrDefault(itemName, 0) + 1);
     System.out.println(itemName + " を手に入れた！（現在: " + itemBox.get(itemName) + "個）");
   }
   
+  public void printItem(){
+    this.itemBox.forEach((key, value) -> {
+      System.out.println("キー: " + key + ", 値: " + value);
+    });
+  }
+  
+  public Map<String, Integer> getItemBox(){return this.itemBox;}
+  
+  public boolean hasMaterial(String itemName, int count) {
+    return this.itemBox.getOrDefault(itemName, 0) >= count;
+  }
+  
+  public void consumeMaterial(String itemName, int count) {
+    this.itemBox.put(itemName, itemBox.get(itemName) - count);
+  }
   //戦闘関連の処理ここから
  // public void setHP(int num){this.hp = num;}
   public void setExp(int num){this.exp += num;}

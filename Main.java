@@ -6,9 +6,7 @@ public class Main {
   public static void main(String args[]) {
     Player hero = new Player();
     WorldMap wm = WorldMap.getInstance();
-   //ds
-    // String item = "null";
-
+    
     String loop = "null";
     
     while (true) {
@@ -22,12 +20,13 @@ public class Main {
   
   
   public static void playerMove(Player hero, WorldMap wm) {
+    CraftingManager craft = new CraftingManager();
     Scanner scanner = new Scanner(System.in);
     Point currentLocation = hero.getLocation(); // Playerクラスに getLocation() があると仮定
     int nextX = currentLocation.x;
     int nextY = currentLocation.y;
     String move = "null"; //移動方向を保持
-    String con = "null"; //連続移動のチェック
+   // String con = "null"; //連続移動のチェック
     boolean moved = false; // 移動実行のチェックに使用
     
     
@@ -37,8 +36,7 @@ public class Main {
     nextY = currentLocation.y;
     moved = false;
     
-    System.out.println("移動の方向を選択 (w/a/s/d, qで終了): ");
-    
+    System.out.println("移動の方向を選択 (w/a/s/d, cでクラフトメニュー qで終了): ");
     try {
       move = scanner.nextLine().toLowerCase();
     } catch (Exception e) {
@@ -63,17 +61,18 @@ public class Main {
         nextX++;
         moved = true;
         break;
-      
+      case "c":
+        craft.craftMenu(hero);
+        break;
+        
       case "q":
         System.out.println("ゲームを終了します");
-        scanner.close();
         System.exit(0);
       
       default:
         System.out.println("値が不正です (w/a/s/d/q)");
         break;
     }
-    
     System.out.println("入力されたコマンド: " + move);
     
     if (moved) {

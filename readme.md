@@ -12,6 +12,8 @@
 * Enemy.java 敵キャラの親クラス
 * Boss.java ラスボスのクラス
 * Slime.java みんな大好きスライムのクラス
+* CraftManager.java クラフトクラス
+* recipes.csv クラフトレシピ一覧
 
 ## ゲーム仕様
 * ボスは森の中にいる
