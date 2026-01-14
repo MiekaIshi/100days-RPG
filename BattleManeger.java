@@ -31,15 +31,15 @@ public class BattleManeger {
         System.out.println(this.name + "を倒した");
         if (this.name.equals("boss")) {
           System.out.println("ゲームクリア");
-          wait(6);
+          sleep(6);
           System.exit(0);
         } else {
           player.addItem(en.drop());
           player.setHP(playerHP);
-          player.setExp(en.getExp);
-          wait(3);
+          player.setExp(en.getExp());
+          sleep(3);
           if(player.getExp() > 50)player.levelUp();}
-        wait(3);
+        sleep(3);
           return;
         }
       
@@ -47,7 +47,7 @@ public class BattleManeger {
         playerHP -= en.getAttack();
         if (playerHP <= 0) {
           System.out.println("勇者は、負けてしまった。ゲームオーバー");
-          wait(5);
+          sleep(5);
           System.exit(0);
         }
           
@@ -55,7 +55,7 @@ public class BattleManeger {
     
     }
   
-  private void wait(int second){
+  private void sleep(int second){
     second *= 1000;//ミリ秒で設定する
     try{
       Thread.sleep(second);

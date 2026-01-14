@@ -1,7 +1,5 @@
-import com.sun.source.tree.BreakTree;
-
 public class Slime extends Enemy{
-  public  Slime(){
+  public Slime(){
     this.hp      = 20;
     this.attack  = 5;
     this.defense = 10;

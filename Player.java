@@ -17,6 +17,7 @@ public class Player {
   private int maxHp  = 100;
   private int hp     = 100;
   private int defancd = 10;
+  
   private Map<String, Integer> itemBox = new HashMap<>();
   
   public Player(){
@@ -33,9 +34,13 @@ public class Player {
         this.playerLocation.x = x;
         this.playerLocation.y = y;
     }
-    
-    public int getHP(){ return this.hp;}
+  
+  public int getLevel(){return this.level;}
+  public int getExp(){return this.exp;}
+  public int getMaxHp(){return maxHp;}
+  public int getHP(){ return this.hp;}
     public void setHP(int num){this.hp = num;}
+  
   
   public int getAttack()   { return this.attack;}
   public void setAttack    (int num) {this.attack = num;}
@@ -65,7 +70,7 @@ public class Player {
   //戦闘関連の処理ここから
  // public void setHP(int num){this.hp = num;}
   public void setExp(int num){this.exp += num;}
-  public int getExp(){return this.exp;}
+ 
   public void levelUp() {
     level++;
     exp -= 50;

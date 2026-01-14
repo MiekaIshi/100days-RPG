@@ -5,23 +5,38 @@ public class Main {
 
   public static void main(String args[]) {
     Player hero = new Player();
+    Save save = new Save();
     WorldMap wm = WorldMap.getInstance();
     
+    Scanner scanner = new Scanner(System.in);
+    
     String loop = "null";
+    
+    System.out.println("ゲームスタート");
+    System.out.println("n:新規ゲーム　c: 続きから ");
+    String start = "a";
+    try {
+      start = scanner.nextLine().toLowerCase();
+    } catch (Exception e) {
+      System.out.println("入力を受け付けられませんでした。エラー: " + e.getMessage());
+    }
+    if(start.equals("c")) {
+      save.loadData(hero);
+    }
     
     while (true) {
      // wm.printMap();
       System.out.println("現在位置: " + hero.showLocation());
       wm.cheakArea(hero);
       
-      playerMove(hero,wm);
+      playerMove(hero,wm,scanner,save);
     }
   }
   
   
-  public static void playerMove(Player hero, WorldMap wm) {
+  public static void playerMove(Player hero, WorldMap wm ,Scanner scanner,Save save) {
     CraftingManager craft = new CraftingManager();
-    Scanner scanner = new Scanner(System.in);
+    
     Point currentLocation = hero.getLocation(); // Playerクラスに getLocation() があると仮定
     int nextX = currentLocation.x;
     int nextY = currentLocation.y;
@@ -30,13 +45,12 @@ public class Main {
     boolean moved = false; // 移動実行のチェックに使用
     
     
-    // ループ開始時に座標を必ずリセットする
     currentLocation = hero.getLocation();
     nextX = currentLocation.x;
     nextY = currentLocation.y;
     moved = false;
     
-    System.out.println("移動の方向を選択 (w/a/s/d, cでクラフトメニュー qで終了): ");
+    System.out.println("移動の方向を選択 (w/a/s/d, c:クラフトメニュー c:セーブ qで終了): ");
     try {
       move = scanner.nextLine().toLowerCase();
     } catch (Exception e) {
@@ -63,6 +77,10 @@ public class Main {
         break;
       case "c":
         craft.craftMenu(hero);
+        break;
+        
+      case "s":
+        save.saveData(hero);
         break;
         
       case "q":

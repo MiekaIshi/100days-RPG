@@ -76,7 +76,7 @@ Thread.sleep を使って、バトルのテンポを調整する。
 ```
 String header = br.readLine();
 ```
-
+* javaには、設定ファイルそ作成するために、プロパティクラスがる。
 
  
 
