@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "resultName": "粘土",
+    "materials": [
+      { "name": "スライムの粘液", "count": 1 },
+      { "name": "土", "count": 1 }
+    ]
+  },
+  {
+    "id": 2,
+    "resultName": "石のハンマー",
+    "materials": [
+      { "name": "石", "count": 2 },
+      { "name": "木の枝", "count": 1 },
+      { "name": "草", "count": 1 }
+    ]
+  }
+]

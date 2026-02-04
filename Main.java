@@ -13,6 +13,7 @@ public class Main {
     String loop = "null";
     
     System.out.println("ゲームスタート");
+    /*
     System.out.println("n:新規ゲーム　c: 続きから ");
     String start = "a";
     try {
@@ -23,7 +24,7 @@ public class Main {
     if(start.equals("c")) {
       save.loadData(hero);
     }
-    
+    */
     while (true) {
      // wm.printMap();
       System.out.println("現在位置: " + hero.showLocation());
@@ -59,19 +60,19 @@ public class Main {
     
     // 予測される移動先座標を計算
     switch (move) {
-      case "w":
+      case "w"://上に移動
         nextY--;
         moved = true;
         break;
-      case "s":
+      case "x": //下に移動
         nextY++;
         moved = true;
         break;
-      case "a":
+      case "a": //左に移動
         nextX--;
         moved = true;
         break;
-      case "d":
+      case "d": //右に移動
         nextX++;
         moved = true;
         break;
@@ -79,10 +80,12 @@ public class Main {
         craft.craftMenu(hero);
         break;
         
+        /*
       case "s":
         save.saveData(hero);
         break;
-        
+        */
+      
       case "q":
         System.out.println("ゲームを終了します");
         System.exit(0);

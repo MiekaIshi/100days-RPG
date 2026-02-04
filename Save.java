@@ -7,6 +7,7 @@ public class Save {
  
   private Properties props = new Properties();
   
+  /*
   public void saveData(Player hero) {
     props.setProperty("player.level", String.valueOf(hero.getLevel()));
     props.setProperty("player.hp", String.valueOf(hero.getHP()));
@@ -48,6 +49,8 @@ public class Save {
     } catch (IOException | NumberFormatException e) {
       System.out.println("ロードに失敗しました。ファイルがないか、データが壊れています。");
     }
-  }
+    
+    
+  }*/
   
 }
