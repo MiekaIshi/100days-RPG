@@ -1,7 +1,7 @@
 public class Enemy {
   protected  int hp;
   protected  int attack;
-  protected  int defense;
+  protected  int  defense;
   //倒したときにプレイヤーが得られる経験値
   protected int getExp = 0;
   
@@ -23,7 +23,7 @@ public class Enemy {
     this.defense = num;
   }
   public int getDefense(){
-    return this.defense;
+    return this. defense;
   }
   public int getExp() {return this.getExp;}
   public String drop(){return "なし";}

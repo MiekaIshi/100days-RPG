@@ -16,7 +16,7 @@ public class Player {
   private int attack = 10;
   private int maxHp  = 100;
   private int hp     = 100;
-  private int defancd = 10;
+  private int  defense = 10;
   
   private Map<String, Integer> itemBox = new HashMap<>();
   
@@ -37,7 +37,8 @@ public class Player {
   
   public int getLevel(){return this.level;}
   public int getExp(){return this.exp;}
-  public int getMaxHp(){return maxHp;}
+  public int getMaxHp(){return this.maxHp;}
+  public int getDefense(){return this.defense;}
   public int getHP(){ return this.hp;}
     public void setHP(int num){this.hp = num;}
   
@@ -72,12 +73,11 @@ public class Player {
   public void setExp(int num){this.exp += num;}
  
   public void levelUp() {
-    level++;
-    exp -= 50;
-    
-    maxHp += 10;
-    attack += 10;
-    defancd += 5;
+    this.level++;
+    this.exp -= 50;
+    this.maxHp += 10;
+    this.attack += 5;
+    this.defense += 3;
     
     fullHP();
   }

@@ -2,7 +2,7 @@ public class Boss extends Enemy{
   public Boss(){
     this.hp = 100;
     this.attack = 30;
-    this.defense = 30;
+    this.defense = 20;
   }
   
   public void start(){

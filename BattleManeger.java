@@ -22,11 +22,16 @@ public class BattleManeger {
   
   public void battleMode(Player player, Enemy en) {
     int enemyHP  = en.getHP();
+    int enemyAttack = player.getAttack();
+    int enemyDefense = en.getDefense();
+    
     int playerHP = player.getHP();
+    int playerAttack = player.getAttack();
+    int playerDefense = player.getDefense();
     
     while (true) {
       System.out.println("勇者の攻撃");
-      enemyHP -= player.getAttack();
+      enemyHP -= damege(playerAttack,enemyDefense);
       if (enemyHP <= 0) {
         System.out.println(this.name + "を倒した");
         if (this.name.equals("boss")) {
@@ -44,7 +49,7 @@ public class BattleManeger {
         }
       
         System.out.println(this.name + "の攻撃！");
-        playerHP -= en.getAttack();
+        playerHP -= damege(enemyAttack,playerDefense);
         if (playerHP <= 0) {
           System.out.println("勇者は、負けてしまった。ゲームオーバー");
           sleep(5);
@@ -53,6 +58,13 @@ public class BattleManeger {
           
       }
     
+    }
+    
+    private int damege(int attack,int defence){
+      int damage = attack - defence;
+      if(damage <= 0){damage = 3;}
+      
+      return damage;
     }
   
   private void sleep(int second){
