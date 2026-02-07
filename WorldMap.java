@@ -118,6 +118,7 @@ public class WorldMap {
     til = getTilDate(pLocation.y, pLocation.x);
     encounter = rand.nextInt(100) + 1;
     
+    Fairy fairy = new Fairy();
     switch (til) {
       case 2:
         if (encounter <= 40) {
@@ -133,6 +134,7 @@ public class WorldMap {
         }
         break;
       case 4:
+        //fairy();
         player.fullHP();
         break;
       
