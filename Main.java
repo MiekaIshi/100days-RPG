@@ -13,18 +13,21 @@ public class Main {
     String loop = "null";
     
     System.out.println("ゲームスタート");
-    /*
+    String start = "zn" +
+        "";
     System.out.println("n:新規ゲーム　c: 続きから ");
-    String start = "a";
     try {
-      start = scanner.nextLine().toLowerCase();
+     start = scanner.nextLine().toLowerCase();
     } catch (Exception e) {
       System.out.println("入力を受け付けられませんでした。エラー: " + e.getMessage());
     }
-    if(start.equals("c")) {
-      save.loadData(hero);
+    
+    if(start.equals("c")){
+      SaveDTO dto = save.loadData();
+      hero.loadDTO(dto);
     }
-    */
+    
+    
     while (true) {
      // wm.printMap();
       System.out.println("現在位置: " + hero.showLocation());
@@ -80,18 +83,17 @@ public class Main {
         craft.craftMenu(hero);
         break;
         
-        /*
+        
       case "s":
-        save.saveData(hero);
+        save.saveDate(hero);
         break;
-        */
       
       case "q":
         System.out.println("ゲームを終了します");
         System.exit(0);
       
       default:
-        System.out.println("値が不正です (w/a/s/d/q)");
+        System.out.println("値が不正です (w/a/s/d/c/q)");
         break;
     }
     System.out.println("入力されたコマンド: " + move);

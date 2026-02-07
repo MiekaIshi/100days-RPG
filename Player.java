@@ -34,8 +34,8 @@ public class Player {
         this.playerLocation.x = x;
         this.playerLocation.y = y;
     }
-  
-  public int getLevel(){return this.level;}
+    public int getLevel(){return this.level;}
+  public void setLevel(int num){this.level = num;}
   public int getExp(){return this.exp;}
   public int getMaxHp(){return this.maxHp;}
   public int getDefense(){return this.defense;}
@@ -46,6 +46,16 @@ public class Player {
   public int getAttack()   { return this.attack;}
   public void setAttack    (int num) {this.attack = num;}
   public void setplusAttack(int x){this.attack += x;}
+  public Map<String, Integer> getItemBox(){return this.itemBox;}
+  
+  public void loadDTO(SaveDTO dto) {
+    this.level = dto.level;
+    this.maxHp   = dto.maxHp;
+    this.hp      = dto.hp;
+    this.defense = dto.defense;
+    this.exp     = dto.exp;
+    this.itemBox = dto.itemBox;
+  }
   
   public void addItem(String itemName) {
     // すでに持っていれば個数を+1、なければ1個として登録
@@ -59,7 +69,7 @@ public class Player {
     });
   }
   
-  public Map<String, Integer> getItemBox(){return this.itemBox;}
+  //public Map<String, Integer> getItemBox(){return this.itemBox;}
   
   public boolean hasMaterial(String itemName, int count) {
     return this.itemBox.getOrDefault(itemName, 0) >= count;

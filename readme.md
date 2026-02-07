@@ -15,6 +15,9 @@
 * CraftManager.java クラフトクラス
 * RecipeDTO.java DTOのクラス
 * MaterialDTO.java
+* Save.java セーブデータの保存と読み込み
+* SaveDTO Save.javaのデータ型クラス
+* save.json
 
 ## ゲーム仕様
 * ボスは森の中にいる
